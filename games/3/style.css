@@ -1,0 +1,64 @@
+body{
+  background: #ddd;
+}
+
+#game{
+  width : 450px;
+  position: relative;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+
+#clock {
+  margin-top: 420px;
+  margin-left: 100px;
+}
+
+#pole{width: 450px;}
+
+#pole a{
+  width: 100px;
+  height: 100px;
+  float: left;
+  display: block;
+  cursor: pointer;
+  margin: 1px;
+  border: 1px solid #777;
+}
+
+#pole .color1{
+  background-color: #ff3333;
+}
+
+#pole .color2{
+  background-color: #ff33ff;
+}
+
+#pole .color3{
+  background-color: #ffff33;
+}
+
+#pole .color4{
+  background-color: #33ff33;
+}
+
+#pole .color5{
+  background-color: #3333ff;
+}
+
+#pole .color6{
+  background-color: #123456;
+}
+
+#pole .color7{
+  background-color: #333333;
+}
+
+#pole .color8{
+  background-color: #33ffff;
+}
+
+#pole .hidden{
+  background-color: white;
+}

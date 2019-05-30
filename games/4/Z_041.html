@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style1.css">
+    <title>Задание 4</title>
+    <meta charset="utf-8">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+        <div id="field"></div>
+
+    </div>
+
+
+    <script>
+    let chess = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    var A = ['A','B','C','D','E','F','G','H'];
+    function drow() {
+        let m = 0;
+
+        document.querySelector('#field').innerHTML += '<div class="chess-block1"></div>';
+        for (var i = 0; i < 8; i++) {
+           document.querySelector('#field').innerHTML += '<div class="chess-block2"><h3>' + (A[i]) + '</h3></div>';    //верхние буквы
+        }
+        document.querySelector('#field').innerHTML += '<div class="chess-block1"></div>';
+
+        for(let i = 0; i < 8; i++){                                                                           // Создание поля
+          let arr = chess[i];
+          document.querySelector('#field').innerHTML += '<div class="chess-block3"><h3>' + (i+1) + '</h3></div>';      //левые цифоы
+          for(let j = 0; j < 8; j++){
+
+            if (m%2 == 0){
+              document.querySelector('#field').innerHTML += '<div class="chess-block bg-white"  data-x="' +   //
+              (i) + '" data-y="' + (j) + '"></div>';                                                          //чётные белые
+            }
+            else{
+              document.querySelector('#field').innerHTML += '<div class="chess-block bg-black"  data-x="' +   //
+              (i) + '" data-y="' + (j) + '"></div>';                                                          //нечётные тёмно-серые
+            }
+
+            m++;
+          }
+          document.querySelector('#field').innerHTML += '<div class="chess-block3"><h3>' + (i+1) + '</h3></div>';      //правые цифры
+          m++;
+        }
+        document.querySelector('#field').innerHTML += '<div class="chess-block1"></div>';
+        for (var i = 0; i < 8; i++) {
+          document.querySelector('#field').innerHTML += '<div class="chess-block2"><h3>' + (A[i]) + '</h3></div>';    //нижние буквы
+        }
+        document.querySelector('#field').innerHTML += '<div class="chess-block1"></div>';
+        document.querySelectorAll('.chess-block').forEach(function(element){    //описание нажатия
+        element.onclick = horse;
+        });
+
+    }
+
+
+    drow();
+
+function horse() {  //функция при нажатии
+
+      document.querySelectorAll('.chess-block').forEach(  //во всех найденных chess-block удалить добавленные цвета
+        function (element) {
+          element.classList.remove('active');
+          element.classList.remove('green');
+        });
+
+
+
+      let x = this.dataset.x;
+      let y = this.dataset.y;
+      var X = [];
+      var Y = [];
+      var k = 0;
+      for (var i = 0; i < 8; i++) {     //Проверки:
+          for (var j = 0; j < 8; j++) {
+            if (
+              (i+1== y & j+2 == x)|  // Обратные
+              (i+1== y & j-2 == x)|  // проверки
+              (i-1== y & j+2 == x)|  // во
+              (i-1== y & j-2 == x)|  // всех
+              (i+2== y & j+1 == x)|  // направлениях
+              (i+2== y & j-1 == x)|  // для
+              (i-2== y & j+1 == x)|  // x,y
+              (i-2== y & j-1 == x)){ //
+
+              X[k] = j;              //
+              Y[k] = i;              // присвоение значений массивам ответов
+              k++;
+            }
+          }
+       } ;
+  //  console.log(x + ' ' + y);
+  //  console.log(X + ' ' + Y);
+
+    element = this;
+    this.classList.add('active'); //закраска выбранной точки в синий цвет
+    for (var i = 0; i <= k; i++) {
+      document.querySelector('.chess-block[data-x="'+X[i]+'"][data-y="'+Y[i]+'"]').classList.add('green');  //закраска решений в зелёный цвет
+    }
+
+}
+    </script>
+
+  </body>
+</html>

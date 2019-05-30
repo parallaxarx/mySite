@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Задание 2</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <form>
+
+      <!--Ввод чисел-->
+      <p>Исходное положение:<br></p>
+      <input id="in1" type="text" name="in1" value="A1"><br><br>
+      <!--Кнопка сложения-->
+      <button type="button" name="but1" value="0" onclick="f1()">
+        Ok
+      </button>
+
+    </form>
+    <br>
+    <!--Вывод-->
+    <form>
+      Вывод:<br>
+      <output id="out1" name="result" value=""> </output>
+    </form>
+    <!--Скрипт-->
+    <script>
+      function f1() {
+        var i1 = in1.value;         //input
+        var c1 = i1.charAt(0);      //Буква из ввода
+        var c2 = i1.charAt(1);      //Цифра из ввода
+        var t1  ;                   //Индекс по i
+        var t2 = parseFloat(c2)-1;  //Индекс по j
+        //Создание массивов для проверки в разных регистрах
+
+        var A = ['A','B','C','D','E','F','G','H'];
+        var B = ['a','b','c','d','e','f','g','h'];
+
+        const N = 8; //размер массивов
+                     //можно и A.lenght
+
+        var C = []; //Массив для ответов
+
+        for (var i = 0; i < N; i++) {
+          if (A[i] == c1 | B[i] == c1 ) {
+              t1 = i;
+          } //Определение индекса по i
+        }
+
+        var k = 0;  //Счётчик для массива С (кол-во ответов)
+
+        for (var i = 0; i < N; i++) {     //Проверки:
+            for (var j = 0; j < N; j++) {
+              if (
+                (i+2 == t1 & j+1 == t2)|  // Обратные
+                (i+2 == t1 & j-1 == t2)|  // проверки
+                (i+1 == t1 & j+2 == t2)|  // во
+                (i+1 == t1 & j-2 == t2)|  // всех
+                (i-1 == t1 & j+2 == t2)|  // направлениях
+                (i-1 == t1 & j-2 == t2)|  // для
+                (i-2 == t1 & j+1 == t2)|  // i,j
+                (i-2 == t1 & j-1 == t2)){ //
+
+                C[k] = A[i]+ (j+1);       // присвоение значений массиву ответов
+                k += 1;
+              }
+            }
+        }
+        document.getElementById('out1').innerHTML = C;  //Вывод
+      }
+    </script>
+
+
+  </body>
+</html>
